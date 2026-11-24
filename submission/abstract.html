@@ -1,0 +1,25 @@
+<!doctype html><meta charset='utf-8'><title>Abstract — Anticipatory Commerce</title><style>
+@page{size:A4;margin:19mm 17mm}
+body{font:11.2pt/1.55 -apple-system,"Helvetica Neue",Arial,sans-serif;color:#15201f;margin:0}
+h1{font-size:19pt;letter-spacing:-.02em;margin:0 0 6pt;line-height:1.2}
+h2{font-size:13pt;letter-spacing:-.01em;margin:17pt 0 5pt;padding-bottom:3pt;
+   border-bottom:.6pt solid #d8dedc}
+h3{font-size:11.6pt;margin:13pt 0 4pt}
+p{margin:0 0 8pt}
+ul,ol{margin:0 0 8pt;padding-left:16pt}
+li{margin:0 0 3pt}
+code{font:10pt ui-monospace,Menlo,monospace;background:#f1f4f3;padding:1pt 3pt;border-radius:3pt}
+a{color:#0e5e52;text-decoration:none}
+table{width:100%;border-collapse:collapse;margin:0 0 10pt;font-size:9.8pt}
+th{text-align:left;border-bottom:1pt solid #15201f;padding:4pt 5pt;font-size:9pt;
+   text-transform:uppercase;letter-spacing:.04em}
+td{padding:4pt 5pt;border-bottom:.4pt solid #e3e8e6;vertical-align:top}
+blockquote{margin:0 0 8pt;padding-left:9pt;border-left:2pt solid #0e5e52;color:#3a4a48}
+strong{font-weight:650}
+</style><h1>Anticipatory Commerce: commit when the words prove the product</h1>
+<p><strong>Team Clauduss</strong> (TM-3C7A31667D2) — Priyam Rupapara, Nivaan Shah, Ved Patel, Manan Iyer. AgentX Challenge 1.</p>
+<p><strong>The idea.</strong> Most shopping assistants guess early and hope. Ours never guesses. The wanted product satisfies the shopper&#x27;s complete request, so every word so far is part of that request, and the wanted product is always among those still matching. The instant exactly one product matches, it <em>must</em> be the right one. Committing early becomes a proof, not a gamble, and it is the earliest moment an honest agent can act. It also shows why a late constraint — &quot;oh, and in blue&quot; — can never mislead us: it only removes products, never the right one.</p>
+<p><strong>What breaks it.</strong> A correction is different: &quot;size 8, I mean size 7&quot; says a filter we already used was never wanted. Every correction in the data opens with one of a small set of words — <em>no, sorry, wait, actually, make, I, oops, or, nahi, matlab</em>. So the agent waits where corrections live: one word when the proof lands on a comma or full stop, four after one of those openers. Waiting only there keeps it cheap; elsewhere it answers at once.</p>
+<p><strong>Build summary.</strong> Three small Python files, standard library only. A lexicon maps the many ways people speak onto the 16 categories, 16 colours, 18 brands and 18 sizes the catalogue holds — &quot;runners&quot; to running shoes, &quot;navy blue&quot; to navy and never blue, &quot;kaala&quot; to black, &quot;saadhe teen hazaar&quot; and &quot;3.5k&quot; both to 3500. A reader re-reads the request on every word under one rule, that the last thing said about a field wins, handling corrections and late constraints together. It also reports when a reading is unsettled — &quot;navy&quot; may become &quot;navy blue&quot;, &quot;under&quot; still awaits its number — and an unsettled reading is never acted on. Searches cost score, so the agent reuses them: adding a filter only removes products, and a search returning fewer rows than it asked for has listed them all, so tighter readings are answered from one already paid for.</p>
+<p><strong>Results.</strong> On the 300 development requests: score <strong>44.9</strong> against the baseline&#x27;s 20.0, accuracy <strong>1.000</strong> against 0.527, all five filters right on every request, 4 wrong commits in 300, and <strong>1.23 searches</strong> per request against the baseline&#x27;s 1.53. Our vocabulary was written while reading that data, so we also built 300 requests from the catalogue in deliberately unfamiliar wording, including words the lexicon does not contain. Accuracy stays <strong>1.000</strong> and the score rises to 47.4. The two waiting constants survive a two-fold test: each half of the data picks the same pair alone.</p>
+<p><strong>Cost and scale.</strong> No model and no API call at run time. One core serves <strong>1,141 requests per second</strong> at 0.066 ms per word, p95 0.27 ms, in 21 MB. Run cost is effectively zero: one small cloud instance covers millions of requests a day.</p>

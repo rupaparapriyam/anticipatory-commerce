@@ -1,0 +1,39 @@
+<!doctype html><meta charset='utf-8'><title>AgentX — Links and results</title><style>
+@page{size:A4;margin:19mm 17mm}
+body{font:11.2pt/1.55 -apple-system,"Helvetica Neue",Arial,sans-serif;color:#15201f;margin:0}
+h1{font-size:19pt;letter-spacing:-.02em;margin:0 0 6pt;line-height:1.2}
+h2{font-size:13pt;letter-spacing:-.01em;margin:17pt 0 5pt;padding-bottom:3pt;
+   border-bottom:.6pt solid #d8dedc}
+h3{font-size:11.6pt;margin:13pt 0 4pt}
+p{margin:0 0 8pt}
+ul,ol{margin:0 0 8pt;padding-left:16pt}
+li{margin:0 0 3pt}
+code{font:10pt ui-monospace,Menlo,monospace;background:#f1f4f3;padding:1pt 3pt;border-radius:3pt}
+a{color:#0e5e52;text-decoration:none}
+table{width:100%;border-collapse:collapse;margin:0 0 10pt;font-size:9.8pt}
+th{text-align:left;border-bottom:1pt solid #15201f;padding:4pt 5pt;font-size:9pt;
+   text-transform:uppercase;letter-spacing:.04em}
+td{padding:4pt 5pt;border-bottom:.4pt solid #e3e8e6;vertical-align:top}
+blockquote{margin:0 0 8pt;padding-left:9pt;border-left:2pt solid #0e5e52;color:#3a4a48}
+strong{font-weight:650}
+</style><h1>Anticipatory Commerce — Team Clauduss</h1>
+<p>AgentX: The Agentic Commerce Challenge · Techfest IIT Bombay 2026–27 <strong>Challenge 1 — Anticipatory Commerce</strong> · Team ID <strong>TM-3C7A31667D2</strong></p>
+<p><strong>Code repository — https://github.com/rupaparapriyam/anticipatory-commerce</strong></p>
+<h2>The team</h2>
+<p>Priyam Rupapara (leader), Nivaan Shah, Ved Patel, Manan Nagar.</p>
+<h2>What is in this folder</h2>
+<table><thead><tr><th>File</th><th>What it is</th></tr></thead><tbody>
+<tr><td>Abstract.pdf</td><td>486 words, within the 500-word limit</td></tr>
+<tr><td>Code repository</td><td>link above; <code>agent.py</code>, <code>reader.py</code>, <code>lexicon.py</code></td></tr>
+<tr><td>outputs-dev.jsonl</td><td>our results on the public development set</td></tr>
+<tr><td>outputs-stress.jsonl</td><td>our results on 300 unseen-wording requests we generated</td></tr>
+<tr><td>Demo video</td><td>3 minutes</td></tr>
+</tbody></table>
+<h2>The numbers</h2>
+<table><thead><tr><th></th><th>dev.jsonl</th><th>stress.jsonl (wording we never taught it)</th></tr></thead><tbody>
+<tr><td>Score</td><td><strong>44.9</strong> (baseline 20.0)</td><td><strong>47.4</strong> (baseline 11.9)</td></tr>
+<tr><td>Accuracy</td><td><strong>1.000</strong> (baseline 0.527)</td><td><strong>1.000</strong></td></tr>
+<tr><td>Wrong commits</td><td>4 in 300</td><td>4 in 300</td></tr>
+<tr><td>Searches per request</td><td><strong>1.23</strong> (baseline 1.53)</td><td>1.20</td></tr>
+</tbody></table>
+<p>Reproduce both with <code>python evaluate.py --agent agent.py</code> and <code>python evaluate.py --agent agent.py --data stress.jsonl</code>. Python 3.9, standard library only. No model and no API call at run time.</p>
